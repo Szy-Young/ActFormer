@@ -1,0 +1,9 @@
+numpy
+scipy
+h5py
+scikit-learn
+einops
+timm
+pyyaml==5.4.1
+torchpack==0.2.2
+python-igraph==0.9.1

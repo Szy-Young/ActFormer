@@ -1,0 +1,29 @@
+data: datasets/joint_ntu_gta/gta_personwise_rescaled/gta_combat_2p.h5
+sample: [
+    work_dir/actformer/gta_2p/epoch500.gen_100_per_class.joints15.h5,
+]
+work_dir: work_dir/eval_motion_multip/gta_2p
+num_class: 1
+
+# feeder
+feeder: feeder.feeder_eval.Feeder
+test_feeder_args:
+  C: 6
+  V: 15
+  T: 64
+  dataset: gta
+
+# model
+weights: work_dir/recognition/ntu120_joints15/epoch80_model.pt
+model: net.st_gcn.st_gcn.Model
+model_args:
+  in_channels: 3
+  num_class: 94
+  dropout: 0.5
+  edge_importance_weighting: True
+  graph_args:
+    layout: 'joints15'
+    strategy: 'spatial'
+
+test_batch_size: 64
+print_log: False

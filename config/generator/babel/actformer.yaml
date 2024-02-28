@@ -1,0 +1,70 @@
+work_dir: work_dir/actformer/babel
+
+# condition
+num_class: 120
+
+# feeder
+feeder: feeder.feeder_resample.Feeder
+resample: True
+train_feeder_args:
+    path: datasets/babel/train120.h5
+    C: 6
+    V: 25
+    T: 60
+    num_class: 120
+    resample_p: 0.5
+    random_crop: True
+    dataset: ntu
+
+# model D
+model_D: net.actformer.net_D.GCN_Discriminator
+model_D_args:
+    C: 6
+    V: 25
+    skeleton_kernel: 2
+    time_kernel: 4
+    symmetry_break: none # none | random | radial
+    use_graph_conv: false
+    spectral_norm: true
+    activation: leakyrelu # leakyrelu | relu | elu
+    motion_flow: true
+    skeleton_path: datasets/babel/smpl_adjacency.h5
+    base_channel: 32
+    noise_std: 0
+    num_class: 120
+
+# model G
+model_G: net.actformer.net_G.ActFormer_Generator
+model_G_args:
+    Z: 120
+    T: 60
+    C: 6
+    V: 25
+    spectral_norm: true
+    out_normalize: smpl
+    learnable_pos_embed: true
+    embed_dim_ratio: 8
+    depth: 2
+    num_heads: 8
+    mlp_ratio: 2.0
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.0
+    num_class: 120
+
+# latent prior
+nnoise: 60
+noise_mode: gp
+length_scale: 100
+
+# optim
+weight_decay: 0
+base_lr: 0.0002
+beta1: 0
+repeat_D: 4
+
+# training
+device: 0
+batch_size: 64
+num_epoch: 500
+save_interval: 20

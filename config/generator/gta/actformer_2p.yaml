@@ -1,0 +1,69 @@
+work_dir: work_dir/actformer/gta_2p
+
+# condition
+num_class: 1
+
+# feeder
+feeder: feeder.feeder.Feeder
+train_feeder_args:
+    path: datasets/gta/gta_combat_2p.h5
+    C: 6
+    V: 22
+    T: 60
+    random_crop: True
+    dataset: gta
+
+# model D
+model_D: net.actformer.net_D.GCN_Discriminator
+model_D_args:
+    C: 6
+    V: 22
+    skeleton_kernel: 2
+    time_kernel: 4
+    symmetry_break: none # none | random | radial
+    use_graph_conv: false
+    spectral_norm: true
+    activation: leakyrelu # leakyrelu | relu | elu
+    motion_flow: true
+    skeleton_path: datasets/gta/gta_adjacency.h5
+    base_channel: 32
+    noise_std: 0
+    num_class: 1
+
+# model G
+model_G: net.actformer.net_G_multip.ActFormer_Generator
+model_G_args:
+    Z: 120
+    T: 60
+    P: 2
+    C: 3
+    V: 22
+    spectral_norm: true
+    out_normalize: skeleton
+    learnable_pos_embed: true
+    pos_embed_2d: true
+    embed_dim_ratio: 8
+    depth: 2
+    num_heads: 8
+    mlp_ratio: 2.0
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.0
+    num_class: 1
+
+# latent prior
+nnoise: 60
+noise_mode: gp
+length_scale: 100
+
+# optim
+weight_decay: 0
+base_lr: 0.0002
+beta1: 0
+repeat_D: 4
+
+# training
+device: 0
+batch_size: 64
+num_epoch: 500
+save_interval: 20
