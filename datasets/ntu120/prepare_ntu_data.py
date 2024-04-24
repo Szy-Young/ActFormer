@@ -10,11 +10,11 @@ from scipy.ndimage import gaussian_filter1d
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-s', '--src_path', default='./datasets/NTU120_RGBD')
+parser.add_argument('-s', '--src_path', default='./datasets/NTU120_RGBD/')
 args = parser.parse_args()
 
 SRC_PATHS = []
-for path in ['skt_txt/D0-30000', 'skt_txt/D30001-56880', 'skt_txt/s018_to_s032']:
+for path in ['skeletons']:
     SRC_PATHS.append(os.path.join(args.src_path, path))
 MISSING_RECORD_FILE = os.path.join(args.src_path, 'ntu_rgb120_missings.txt')
 
