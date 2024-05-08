@@ -68,7 +68,10 @@ python datasets/babel/prepare_data.py -s <path_to_downloaded_data>
 
 ### GTA Combat Dataset
 
-For the GTA Combat Dataset, you could directly download the processed files [here](https://code.eias.ac.cn/xuliang/gta_combat_dataset).
+<!-- For the GTA Combat Dataset, you could directly download the processed files [here](https://code.eias.ac.cn/xuliang/gta_combat_dataset). -->
+
+For the GTA Combat Dataset, you can directly download the processed files from [Google Drive](https://drive.google.com/drive/folders/1bDIZJW4iNYl1Yoz2W5h6fHa93ytaWh7K?usp=drive_link) or [百度云下载链接](https://pan.baidu.com/s/1EgjFHiz7mZ4ZhGfxeScboA?pwd=e8xn).
+
 
 ### SMPL files
 
